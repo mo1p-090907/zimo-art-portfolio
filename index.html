@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Zimo Tang — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f1e7;
+  --ink:#0a0a0a;
+  --paper:#ffffff;
+  --yellow:#ffe600;
+  --magenta:#ff2d7a;
+  --cyan:#00d9ff;
+  --lime:#b6ff3b;
+  --orange:#ff7a00;
+  --violet:#7c3aed;
+  --pink:#ff6fb5;
+  --border:4px solid #0a0a0a;
+  --shadow:8px 8px 0 #0a0a0a;
+  --shadow-sm:4px 4px 0 #0a0a0a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  overflow-x:hidden;
+  line-height:1.6;
+}
+h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-0.02em}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+.blobfield{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.55;mix-blend-mode:multiply;animation:drift 18s ease-in-out infinite}
+.b1{width:420px;height:420px;background:var(--magenta);top:-100px;left:-80px}
+.b2{width:520px;height:520px;background:var(--cyan);top:20%;right:-120px;animation-delay:-6s}
+.b3{width:460px;height:460px;background:var(--yellow);bottom:-120px;left:30%;animation-delay:-12s}
+.b4{width:380px;height:380px;background:var(--lime);bottom:10%;right:5%;animation-delay:-3s}
+@keyframes drift{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(40px,-30px) scale(1.1)}66%{transform:translate(-30px,40px) scale(.95)}}
+
+nav{
+  position:sticky;top:0;z-index:50;
+  background:var(--paper);border-bottom:var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 24px;gap:16px;flex-wrap:wrap;
+}
+.logo{font-family:'Space Grotesk';font-weight:700;font-size:20px;display:flex;align-items:center;gap:10px}
+.logo .dot{width:14px;height:14px;background:var(--magenta);border:3px solid #000;border-radius:50%}
+.navlinks{display:flex;gap:8px;flex-wrap:wrap}
+.navlinks a{padding:6px 12px;border:2px solid #000;border-radius:999px;font-weight:600;font-size:13px;background:var(--paper);transition:transform .15s,background .15s}
+.navlinks a:hover{background:var(--yellow);transform:translate(-2px,-2px);box-shadow:var(--shadow-sm)}
+
+.hero{padding:80px 24px 60px;max-width:1280px;margin:0 auto;position:relative}
+.hero h1{font-size:clamp(64px,14vw,180px);line-height:.85;margin-bottom:20px}
+.hero h1 .accent{color:var(--magenta);font-style:italic;font-family:'Playfair Display'}
+.hero .sub{font-size:clamp(18px,2.5vw,26px);max-width:720px;margin-bottom:30px;font-weight:500}
+.hero .chips{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:40px}
+.chip{padding:8px 16px;border:var(--border);background:var(--paper);font-weight:600;font-size:13px;border-radius:999px;box-shadow:var(--shadow-sm)}
+.chip.c1{background:var(--yellow)} .chip.c2{background:var(--cyan)} .chip.c3{background:var(--lime)} .chip.c4{background:var(--magenta);color:#fff}
+.hero-art{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}
+.hero-art .tile{border:var(--border);background:var(--paper);aspect-ratio:1;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.hero-art .tile:nth-child(1){background:var(--magenta)}
+.hero-art .tile:nth-child(2){background:var(--cyan)}
+.hero-art .tile:nth-child(3){background:var(--yellow)}
+.hero-art .tile span{position:absolute;inset:0;display:grid;place-items:center;font-size:48px;font-weight:700;color:#fff}
+
+.marquee{background:#000;color:#fff;padding:14px 0;overflow:hidden;border-top:var(--border);border-bottom:var(--border);white-space:nowrap}
+.marquee-track{display:inline-block;animation:scroll 28s linear infinite;font-family:'Space Grotesk';font-weight:700;font-size:22px;letter-spacing:.05em}
+.marquee-track span{margin:0 24px}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+section{padding:80px 24px;max-width:1280px;margin:0 auto}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:40px;flex-wrap:wrap}
+.section-head h2{font-size:clamp(40px,7vw,84px);line-height:.9}
+.section-head .num{font-family:'Space Grotesk';font-size:18px;font-weight:700;padding:6px 14px;border:var(--border);background:var(--yellow);border-radius:999px}
+.section-head .tag{font-size:14px;max-width:420px;opacity:.75}
+
+.project{border:var(--border);background:var(--paper);margin-bottom:60px;box-shadow:var(--shadow);position:relative}
+.project-intro{padding:18px 28px;border-bottom:var(--border);background:#fff8e6}
+.project-intro h4{font-size:15px;margin:12px 0 6px;text-transform:uppercase;letter-spacing:.08em;display:flex;align-items:center;gap:8px}
+.project-intro h4::before{content:'';width:12px;height:12px;background:var(--magenta);border:2px solid #000;flex-shrink:0}
+.project-intro h4:first-child{margin-top:0}
+.project-intro p{font-size:15px;line-height:1.7;margin-bottom:8px}
+.project-head{padding:28px 32px;border-bottom:var(--border);display:flex;flex-wrap:wrap;align-items:center;gap:16px;justify-content:space-between;background:var(--yellow)}
+.project:nth-child(even) .project-head{background:var(--cyan)}
+.project:nth-child(3n) .project-head{background:var(--lime)}
+.project-head h3{font-size:clamp(28px,4vw,46px)}
+.project-head .meta{display:flex;gap:8px;flex-wrap:wrap}
+.meta span{padding:4px 10px;border:2px solid #000;border-radius:999px;font-size:12px;font-weight:600;background:#fff}
+.project-body{padding:32px;display:grid;grid-template-columns:1fr 1fr;gap:40px}
+@media(max-width:820px){.project-body{grid-template-columns:1fr}}
+.project-body .col{background:#fff;padding:20px;border:3px solid #0a0a0a;box-shadow:4px 4px 0 #0a0a0a}
+.project-body .col:nth-child(2){background:#f7faff}
+.project-body .col h4{font-size:15px;margin:16px 0 8px;text-transform:uppercase;letter-spacing:.08em;display:flex;align-items:center;gap:8px}
+.project-body .col h4::before{content:'';width:12px;height:12px;background:var(--magenta);border:2px solid #000;flex-shrink:0}
+.project-body .col h4:first-child{margin-top:0}
+.project-body p{margin-bottom:10px;font-size:16px;line-height:1.7}
+.project-body ul,.project-body ol{margin:6px 0 12px 22px;font-size:16px;line-height:1.7}
+.project-body ul li,.project-body ol li{margin-bottom:6px}
+.kv{display:grid;grid-template-columns:140px 1fr;gap:6px 12px;margin-bottom:16px;font-size:14px}
+.kv dt{font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:12px;opacity:.6}
+.kv dd{font-weight:500}
+
+/* large image galleries */
+.gallery{padding:20px 32px 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:24px}
+.gallery img{border:var(--border);box-shadow:var(--shadow-sm);cursor:zoom-in;transition:transform .2s;width:100%;height:auto;background:#eee}
+.gallery img:hover{transform:translate(-3px,-3px);box-shadow:var(--shadow)}
+.gallery .caption{font-size:13px;font-weight:600;margin-top:8px;opacity:.7}
+.gallery .item{display:flex;flex-direction:column}
+
+.about{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:start}
+@media(max-width:820px){.about{grid-template-columns:1fr}}
+.about .card{border:var(--border);background:var(--paper);padding:28px;box-shadow:var(--shadow)}
+.about .card h3{font-size:28px;margin-bottom:12px}
+.about .quote{font-family:'Playfair Display';font-style:italic;font-size:22px;line-height:1.4;padding:20px;border-left:6px solid var(--magenta);background:var(--paper);border:var(--border);box-shadow:var(--shadow-sm)}
+
+footer{background:#000;color:#fff;padding:40px 24px;text-align:center;border-top:var(--border)}
+footer h2{font-size:clamp(32px,6vw,64px);margin-bottom:12px}
+footer p{opacity:.7;font-size:14px}
+
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;z-index:100;padding:20px}
+.lightbox.open{display:flex}
+.lightbox img{max-width:96vw;max-height:92vh;border:var(--border);box-shadow:var(--shadow)}
+.lightbox .close{position:absolute;top:20px;right:24px;color:#fff;font-size:36px;cursor:pointer;font-weight:700}
+</style>
+</head>
+<body>
+
+<div class="blobfield">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div>
+</div>
+
+<nav>
+  <div class="logo"><span class="dot"></span> Zimo Tang</div>
+  <div class="navlinks">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <h1>Zimo's Art Portfolio</h1>
+  <p class="sub">i'd love to pay all my passion on creating something new, joyful and technological.</p>
+  <div class="chips">
+    <span class="chip c1">Stop-Motion</span>
+    <span class="chip c2">Interactive Design</span>
+    <span class="chip c3">Game Design</span>
+    <span class="chip c4">New Media</span>
+  </div>
+  <div class="hero-art">
+    <div class="tile"><span>★</span></div>
+    <div class="tile"><span>◆</span></div>
+    <div class="tile"><span>●</span></div>
+  </div>
+</header>
+
+<div class="marquee"><div class="marquee-track">
+  <span>WORLDS IN MY EYE</span><span>STAR BOX</span><span>AN APPLE A DAY</span><span>MOSU</span><span>GO HOME</span><span>KNOW MENTAL ILLNESS</span>
+  <span>WORLDS IN MY EYE</span><span>STAR BOX</span><span>AN APPLE A DAY</span><span>MOSU</span><span>GO HOME</span><span>KNOW MENTAL ILLNESS</span>
+</div></div>
+
+<section id="about">
+  <div class="section-head">
+    <h2>About</h2>
+    <span class="num">00</span>
+  </div>
+  <div class="about">
+    <div>
+      <div class="quote">"It's like the explosive, vibrant colors hidden within minimalist forms."</div>
+      <p style="margin-top:24px;font-size:16px">My world is fantastic: I envision humans as a gel composed of code, and power lines as invading monsters. People often appreciate how beautiful my worlds are. Yet few have glimpsed the inner contradictions — excessive praise often leaves me feeling overwhelmed. I'm not omnipotent; I'm just a normal teenager with some fantasy and fresh ideas. I struggle to clearly and logically articulate my perception of the world; my language feels too pale and thin to exactly illustrate how the world looks in my view.</p>
+      <p style="margin-top:12px;font-size:16px">Color inspiration comes from artist JayKimEl, whose pieces are always filled with dynamic lines and vibrant colors — very similar to the rich, vivid hues I aim to express in my own mind. That's the part I want to show but can't in my language.</p>
+    </div>
+    <div class="card">
+      <h3>Practice</h3>
+      <p>Stop-motion animation and character design, interactive sensing installations, game design, and web-based mental-health experiences. Tools include code, OpenCode vibe-coding, 3D modeling, and physical puppet fabrication.</p>
+      <h3 style="margin-top:18px">Focus</h3>
+      <p>Adolescent anxiety under external praise, the relationship between universe and humanity, the question of whether our world is the true reality, the irreversible loss of childhood, and making mental illness felt rather than merely explained.</p>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-head">
+    <h2>Projects</h2>
+    <span class="num">06</span>
+    <p class="tag">Six projects spanning animation, installation, game design, and interactive web. Each includes process, research, and final results.</p>
+  </div>
+
+  <article class="project">
+    <div class="project-head">
+      <h3>Worlds in my eye — While-loop</h3>
+      <div class="meta">
+        <span>Stop-Motion Animation & Character Design</span>
+        <span>3/30/2025 – 7/15/2025</span>
+      </div>
+    </div>
+    <div class="project-intro">
+      <h4>Project Description</h4>
+      <p>Derived from <strong>adolescent anxiety under external praise</strong>, this animation explores inner emotional turmoil hidden beneath a <strong>minimalist exterior</strong>.</p>
+      <h4>Project Brief</h4>
+      <p>This work comes from a nap-dream when I was 17. During that time, teachers called me "<strong>Imagine Genius</strong>", but appreciation also brings a lot of stress to me, which has been mapped in my dream. I hope to return to the state of mind at that time by motion video, and re-examine and understand oneself again.</p>
+      <p>My world is fantastic: I would envision humans as a gel composed of code, and the power lines as the invading monsters. People often appreciate how beautiful my worlds are. Yet few have glimpsed the inner contradictions — excessive praise often leaves me feeling overwhelmed, I'm not an omnipotent, I'm just a normal teenager with some fantasy and fresh ideas. I struggle to clearly and logically articulate my perception of the world; I always feel that my language is too pale and thin which cannot exactly illustrate how worlds look in my view. It's like the explosive, vibrant colors hidden within minimalist forms.</p>
+    </div>
+    <div class="gallery">
+      <div class="item"><img src="assets/pages/page-01.png" alt="Worlds in my eye page 1"><p class="caption">Title & Brief</p></div>
+      <div class="item"><img src="assets/pages/page-02.png" alt="Visual Research"><p class="caption">Visual Research</p></div>
+      <div class="item"><img src="assets/pages/page-03.png" alt="Story Outline"><p class="caption">Story Outline</p></div>
+      <div class="item"><img src="assets/pages/page-04.png" alt="Fabrication"><p class="caption">Fabrication</p></div>
+      <div class="item"><img src="assets/pages/page-05.png" alt="Final Result"><p class="caption">Final Result</p></div>
+    </div>
+    <div class="project-body">
+      <div class="col">
+        <h4>Visual Research</h4>
+        <p>Artist: <strong>JayKimEl</strong>. My color inspiration comes from the work of artist <strong>JayKimEl</strong>, whose pieces are always filled with dynamic lines and vibrant colors — very similar to the rich, vivid hues I aim to express in my own mind. That's the part I want to show but I can't in my language.</p>
+      </div>
+      <div class="col">
+        <h4>Story Outline</h4>
+        <p>I stand center stage, dazzled by the spotlight. I unlock the combination lock on my head, revealing a pair of curious eyes inside. The eyes transform into a cherry bomb — the emotions I've hidden deep within me. These feelings burst forth from my mind, concealed within a Newton's cradle, the cartoon character Penelope, the sun stage backdrop, and a lollipop. Finally, a frog leaps out of my head.</p>
+        <p>I chase it past chairs, circus hoops, fraction symbols, birthday cakes, circles of life, and all kinds of imagery that symbolize a "perfect life", until I finally catch up. The frog moves unhurriedly, almost tauntingly. In an instant, my perspective shifts completely. I realize I am not standing center stage at all — I am trapped at the bottom of a <strong>Klein bottle</strong>.</p>
+        <p>Am I the frog stuck at the bottom of the bottle? Or a robot accustomed to standing center stage, yet unable to understand my own true emotions…</p>
+        <h4>Fabrication & Technique</h4>
+        <p>Armature and puppet fabrication: little robot guy and frog. Material tests: black paperboard, joint mobility test, two-legged nail. Storyboard and animation technique spotlight included.</p>
+        <h4>Final Result</h4>
+        <p>Stop-motion animation final (see gallery above).</p>
+      </div>
+    </div>
+  </article>
+
+  <article class="project">
+    <div class="project-head">
+      <h3>Star Box</h3>
+      <div class="meta">
+        <span>Interactive Design / Sensing Design</span>
+        <span>2025.9 – 2026.1</span>
+      </div>
+    </div>
+    <div class="project-intro">
+      <h4>Sub-Title</h4>
+      <p>An interactive installation exploring the concept of "Universe and Humanity".</p>
+      <h4>Project Brief</h4>
+      <p>This project made a motioned new media installation based on code control. Combining pulse beat and sparking light and machine movement to show the philosophy theory: <strong>universe are inherently one with the human body</strong>. Visitors are not only the work's onlooker, they are the "energy". It reveals the most fundamental core of it: <strong>activeness of universe depends on humans' activeness</strong>.</p>
+      <h4>Apps Used</h4>
+      <p>Code-based control, pulse/heart-rate sensing, mechanical pulleys, light and shadow space construction.</p>
+    </div>
+    <div class="gallery">
+      <div class="item"><img src="assets/pages/page-06.png" alt="Star Box title"><p class="caption">Title & Brief</p></div>
+      <div class="item"><img src="assets/pages/page-07.png" alt="Preliminary scheme"><p class="caption">Preliminary Scheme</p></div>
+      <div class="item"><img src="assets/pages/page-08.png" alt="Making Progress"><p class="caption">Making Progress</p></div>
+      <div class="item"><img src="assets/pages/page-09.png" alt="Interactive Testing"><p class="caption">Interactive Testing</p></div>
+      <div class="item"><img src="assets/pages/page-10.png" alt="Final Work"><p class="caption">Final Work</p></div>
+    </div>
+    <div class="project-body">
+      <div class="col">
+        <h4>Artists Inspiration</h4>
+        <ul>
+          <li><strong>James Turrell; Skyspaces</strong> — made a space which lets people feel in a normal room but uses light and shadow to add levels, rebuild space, inspires reflection.</li>
+          <li><strong>Moving Stillness; Bill Viola</strong> — new media artwork using water material to deconstruct the image of Mount Saint, to show the recycle of life, guide the audience to experience the passage of time and the changes of the illusions of reality.</li>
+        </ul>
+      </div>
+      <div class="col">
+        <h4>Preliminary Scheme</h4>
+        <p><strong>PLAN 1:</strong> Projection in the space for starry sky; it interacts when people step in the area. Condition limitation: hard to create a dark space since there's no curtain in library; less interaction, hard to show the calm sense.</p>
+        <p><strong>PLAN 2:</strong> Using sunlight reflection, cause the transparent device to rotate slowly, creating a scene of star-like light and shadow; visitors can watch them in the tent. Condition limitation: the ceiling does not allow the installation; discussion on calmness is not profound either.</p>
+        <h4>Project Sketch</h4>
+        <p>Materials: wire mesh, elastic fabric, star light, cotton, foamed adhesive.</p>
+        <h4>Making Progress</h4>
+        <p>Purchasing materials, building the structure, constructing the background, arranging the foam and elastic fabric, shaping and trimming expanding foam decorations, decorating and painting/spraying, testing interactive code, iteration adding pulleys, wiring and cable management.</p>
+        <h4>Interactive Testing</h4>
+        <p>Code drives steering gear plus pulleys to drive the light source and achieve mechanical movement. Heart rate sensor reads visitor's heart rate, then changes it to sparkling speed and lights' mechanical movement. Visitor's feelings drive universe's moving and sparkling — give the think of universe and human.</p>
+        <h4>Storyboard</h4>
+        <p>Visitor walks into installation; sits down, places finger on heart rate sensor; visitor's feelings drive universe's moving and sparkling.</p>
+        <h4>Final Work</h4>
+        <p>Final installation (see gallery above).</p>
+      </div>
+    </div>
+  </article>
+
+  <article class="project">
+    <div class="project-head">
+      <h3>An apple a day</h3>
+      <div class="meta">
+        <span>Game Design</span>
+        <span>7/31/2025 – 9/13/2025</span>
+      </div>
+    </div>
+    <div class="project-intro">
+      <h4>Concept</h4>
+      <p>"Are we the part of <strong>higher level game</strong>?" This is a meta story game which combines 2D jumping and 3D space exploration. During play time, adding 2D and 3D interaction and disintegrated background. At the end, showing the philosophy thinking: ending — players just a part of higher level game.</p>
+      <h4>Project Description</h4>
+      <p>This project wants to show my question of this world. I am curious that does our world is the <strong>TRUE reality</strong>?</p>
+    </div>
+    <div class="gallery">
+      <div class="item"><img src="assets/pages/page-11.png" alt="An apple a day title"><p class="caption">Title & Concept</p></div>
+      <div class="item"><img src="assets/pages/page-12.png" alt="Game Spec"><p class="caption">Game Spec</p></div>
+      <div class="item"><img src="assets/pages/page-13.png" alt="Achievement"><p class="caption">Achievement</p></div>
+      <div class="item"><img src="assets/pages/page-14.png" alt="Test"><p class="caption">Test & Iteration</p></div>
+      <div class="item"><img src="assets/pages/page-15.png" alt="Final Result"><p class="caption">Final Result</p></div>
+    </div>
+    <div class="project-body">
+      <div class="col">
+        <h4>Game Interactive Specification</h4>
+        <p>Reference game: My shadows are bright. Use "3D blocks" in the game to build paths for the internal 2D platform levels. Design thinking: in the game, I guide players to interact with 3D objects on the table, causing changes in the 2D scene of the tabletop game, thereby achieving a visual effect that links 2D and 3D elements.</p>
+        <p>There is an incident of falling into the water. Player needs to ESC from the 2D game to 3D scene, drink (click) the water on the desk. The water in 2D game will disappear, game continued.</p>
+        <h4>Achievement Collection</h4>
+        <p>Interpretations of apples in the achievement. Throughout human history, apples in so many fields have been signaling to us in various ways: "Our world is a real world." But is that really true? In fact, all of these things are creations of humanity, without exception. How can we use something we ourselves created as evidence of existence?</p>
+      </div>
+      <div class="col">
+        <h4>Apples in History</h4>
+        <ul>
+          <li>Start — The apple core is planted, and the story begins here.</li>
+          <li>In physics, Newton's apple.</li>
+          <li>Apples in Religion — The apple of Adam and Eve.</li>
+          <li>Apples in Art — Rene Magritte's Apples.</li>
+          <li>Apple in Technology — Jobs' Apple.</li>
+          <li>An Apple of Discord — "For the most beautiful person".</li>
+          <li>END — An apple was eaten up.</li>
+        </ul>
+        <h4>Character Design & Special Collection</h4>
+        <p>Character design and special collection spreads included.</p>
+        <h4>Test & Iteration</h4>
+        <p>Player 1 suggestion: the gameplay of switching between the interior and exterior scenes of the computer is very novel, making the entire game more philosophical and interesting. It could be improved: the exterior scenes of the computer are well done, but the platform jumping and enemy styles inside the computer are rather monotonous, and there are many minor flaws in the jumping system.</p>
+        <p>Iteration: I changed the jumping system, to avoid player stuck on wall when they jump and touch the wall. Player become more flexible and have a better playability on controlling.</p>
+        <h4>Final Result</h4>
+        <p>Final game result (see gallery above).</p>
+      </div>
+    </div>
+  </article>
+
+  <article class="project">
+    <div class="project-head">
+      <h3>MOSU</h3>
+      <div class="meta">
+        <span>Beat Game / Vibe Coded</span>
+        <span>OpenCode</span>
+      </div>
+    </div>
+    <div class="gallery">
+      <div class="item"><img src="assets/pages/page-16.png" alt="MOSU"><p class="caption">MOSU</p></div>
+    </div>
+    <div class="project-body">
+      <div class="col">
+        <h4>Concept</h4>
+        <p>I am a beat game fan. But every time I play it there always a question wondered me: I cannot play them everywhere, also sometimes it's hard for me to touch the keys. Such as MAIMAI, the machine is too tall.</p>
+        <p>I notice that every time when I listen to music I imagined there are some taps on the road, just like the dance game. I would automatically put step on those virtual keys.</p>
+        <p>Then I inspired: How can I make this virtual taps come "true"?</p>
+        <h4>Inspiration</h4>
+        <p>OSU and maimai.</p>
+      </div>
+      <div class="col">
+        <h4>Process (Vibe Coded with OpenCode)</h4>
+        <ol>
+          <li>Basic Finger Monitor System — TOUCHING to GET SCORE.</li>
+          <li>Add Different Keys and Sound Effect — Holding Key, Tap Key, Slide Key.</li>
+          <li>AI BeatMap Algorithm — achieve the beatmap generating and allow every song to be played.</li>
+          <li>Testing and debug — Version 1, Version 2, Version 3.</li>
+        </ol>
+        <h4>Final Result</h4>
+        <p>Final beat game result (see gallery above).</p>
+      </div>
+    </div>
+  </article>
+
+  <article class="project">
+    <div class="project-head">
+      <h3>GO HOME</h3>
+      <div class="meta">
+        <span>3D Interactive / Memory</span>
+        <span>Childhood</span>
+      </div>
+    </div>
+    <div class="gallery">
+      <div class="item"><img src="assets/pages/page-17.png" alt="GO HOME concept"><p class="caption">Concept & Process</p></div>
+      <div class="item"><img src="assets/pages/page-18.png" alt="GO HOME final"><p class="caption">Final Result</p></div>
+    </div>
+    <div class="project-body">
+      <div class="col">
+        <h4>Concept: The <strong>Irreversible Loss of Childhood</strong></h4>
+        <p>My parents sold the old house where I had lived for ten years. Only later did I realize that along with the house, my entire childhood from age zero to sixteen was also sold. Time cannot flow backward — I can never go back.</p>
+        <h4>Inspiration: Small World, Small Story</h4>
+        <p>I was inspired by something include small world and record memories at that time. Such as Crystal Ball, Google Map and Music Box.</p>
+        <h4>Process</h4>
+        <ol>
+          <li>I drawed floor plan at first, and write tons of prompts to show the furnitures' details to AI for building a 3D model.</li>
+          <li>I changed workflow: Floor Plan to Image to 3D building. As I try fix layout problem, a surprised image appeared. It inspired me: if multiple rooms cannot work well, what about concentrate all features in one room? Also as I back up my childhood memory, I realized that anime theme songs were really impressive me. So I added an interaction part: when click the poster on the wall of 3D model, songs of the anime will play.</li>
+          <li>I remake it 8 times, adding more and more conditions in prompt. At the end, it looks full of my childhood memories. I focus on the anime which is the biggest and most impressive part in my childhood. I realize every time I heard the songs of them, I would have a lot of feelings on it. So I try to put music as an interactive way, when the posters are clicked it will play the songs.</li>
+          <li>Then I turned it to 3D, tried different materials and structure. Then put it in OpenCode, make a first-person perspective, add the xyz coordinate axis value, then give songs as input value.</li>
+        </ol>
+      </div>
+      <div class="col">
+        <h4>Notes</h4>
+        <p>"However it doesn't look great" — iterative refinement through 8 remakes. Final turned into 3D with first-person perspective and xyz coordinates, songs as input.</p>
+        <h4>Final Result</h4>
+        <p>Final 3D home result (see gallery above).</p>
+      </div>
+    </div>
+  </article>
+
+  <article class="project">
+    <div class="project-head">
+      <h3>Know Mental Illness</h3>
+      <div class="meta">
+        <span>Web UI Design</span>
+        <span>Audio-Visual</span>
+      </div>
+    </div>
+    <div class="project-intro">
+      <h4>Concept</h4>
+      <p>People know mental illness, but do not understand it. They know how painful patients are, but they cannot realize them as just having text explanation. So I use <strong>audio-visual videos</strong> to help people realize them more by simulating resemble feelings.</p>
+    </div>
+    <div class="gallery">
+      <div class="item"><img src="assets/pages/page-19.png" alt="Know Mental Illness"><p class="caption">Concept & UI</p></div>
+      <div class="item"><img src="assets/pages/page-20.png" alt="Final"><p class="caption">Final</p></div>
+    </div>
+    <div class="project-body">
+      <div class="col">
+        <h4>Process</h4>
+        <p>Start as some visual and interactive motion graphs designing.</p>
+        <h4>Conditions</h4>
+        <ul>
+          <li><strong>PTSD:</strong> screen is keeping flashback and red warning seems jumpy.</li>
+          <li><strong>Bipolar:</strong> being bright as the cursor going upper, being dark as it going down. Background will follow the wheel up or down.</li>
+          <li><strong>Depression:</strong> like a never-end raining and being alone as the single light.</li>
+          <li><strong>Anxiety:</strong> chasing a little ball and wool braid continuously growing up synchronously.</li>
+          <li><strong>OCD:</strong> as the user trying reput the box, it would never be suited.</li>
+          <li><strong>ADHD:</strong> included.</li>
+        </ul>
+      </div>
+      <div class="col">
+        <h4>Web UI Design</h4>
+        <p>Different diseases show as cards on page, spreading out when cursor touch them. Background follows the wheel up or down.</p>
+        <h4>Sound Design</h4>
+        <p>Since the visual effect is too abstract, combined some detailed sound tracks for each disease (like the environment and conversation the patients have when these somatizations come out).</p>
+        <h4>Final Result</h4>
+        <p>Final web experience (see gallery above).</p>
+      </div>
+    </div>
+  </article>
+</section>
+
+<section id="gallery">
+  <div class="section-head">
+    <h2>Full Gallery</h2>
+    <span class="num">20</span>
+    <p class="tag">All 20 portfolio pages, final and process spreads.</p>
+  </div>
+  <div class="gallery" id="fullgallery"></div>
+</section>
+
+<section id="contact">
+  <div class="section-head">
+    <h2>Contact</h2>
+    <span class="num">inf</span>
+  </div>
+  <div class="about">
+    <div class="card">
+      <h3>Zimo Tang</h3>
+      <p>Artist, designer, maker, and creator. New media, interactive art, computing art, and game design.</p>
+      <p style="margin-top:12px;opacity:.6;font-size:13px">Portfolio: 20-page collection</p>
+    </div>
+    <div class="card" style="background:var(--magenta);color:#fff">
+      <h3 style="color:#fff">Let's make something vivid.</h3>
+      <p>Open to collaborations, commissions, and curious conversations.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <h2>Stay vivid.</h2>
+  <p>Zimo Tang — Portfolio Website</p>
+</footer>
+
+<div class="lightbox" id="lightbox"><span class="close" id="lbclose">&times;</span><img id="lbimg" src="" alt=""></div>
+
+<script>
+const lb=document.getElementById('lightbox');
+const lbimg=document.getElementById('lbimg');
+document.querySelectorAll('.gallery img').forEach(img=>{
+  img.addEventListener('click',()=>{lbimg.src=img.src;lb.classList.add('open')});
+});
+document.getElementById('lbclose').addEventListener('click',()=>lb.classList.remove('open'));
+lb.addEventListener('click',e=>{if(e.target===lb)lb.classList.remove('open')});
+
+const g=document.getElementById('fullgallery');
+for(let i=1;i<=20;i++){
+  const n=String(i).padStart(2,'0');
+  const wrap=document.createElement('div');
+  wrap.className='item';
+  const im=document.createElement('img');
+  im.src=`assets/pages/page-${n}.png`;
+  im.alt=`Portfolio page ${i}`;
+  im.addEventListener('click',()=>{lbimg.src=im.src;lb.classList.add('open')});
+  const cap=document.createElement('p');
+  cap.className='caption';
+  cap.textContent=`Page ${i}`;
+  wrap.appendChild(im);wrap.appendChild(cap);
+  g.appendChild(wrap);
+}
+</script>
+</body>
+</html>
